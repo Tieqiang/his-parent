@@ -28,17 +28,17 @@ public class ShiroModul extends ShiroWebModule {
         bindRealm().to(HashSystemRealm.class).in(Singleton.class);
         bindConstant().annotatedWith(Names.named("shiro.usernameParam")).to("username");
         bindConstant().annotatedWith(Names.named("shiro.passwordParam")).to("password");
-        bindConstant().annotatedWith(Names.named("shiro.loginUrl")).to("/api/login");
-        bindConstant().annotatedWith(Names.named("shiro.successUrl")).to("/api/user/login-user");
+        bindConstant().annotatedWith(Names.named("shiro.loginUrl")).to("/index.html");
+        bindConstant().annotatedWith(Names.named("shiro.successUrl")).to("/index.html");
         bindConstant().annotatedWith(Names.named("shiro.failureKeyAttribute")).to("failureKeyAttribute");
 
-        addFilterChain("/assert/**", ANON);
+        addFilterChain("/static/**", ANON);
         addFilterChain("/js/**",ANON);
         addFilterChain("/style/**",ANON);
-        addFilterChain("/login.html",ANON);
+        addFilterChain("/index.html",ANON);
         addFilterChain("/regist.html",ANON);
         addFilterChain("/api/regist/**",ANON);//注册服务不需进行过滤
-        //addFilterChain("/api/login/**",ANON);//登陆页面不需要
+        addFilterChain("/api/login/**",ANON);//登陆页面不需要
 
         addFilterChain("/**",AUTHC);
         addFilterChain("/success.html",AUTHC);

@@ -22,7 +22,6 @@ public class CompsiteModul extends JerseyServletModule {
         bind(GuiceContainer.class) ;
         bind(CorsFilter.class).in(Singleton.class);
         filter("/api/*").through(CorsFilter.class);
-
         Map<String, String> params = new HashMap<String, String>();
         params.put("com.sun.jersey.spi.container.ResourceFilters","org.secnod.shiro.jersey.ShiroResourceFilterFactory") ;
         params.put("com.sun.jersey.config.property.packages", "com.his"); //PROPERTY_PACKAGES
@@ -31,8 +30,5 @@ public class CompsiteModul extends JerseyServletModule {
         servletKeyBindingBuilder.with(GuiceContainer.class, params) ;
         install(new JpaPersistModule("domain"));
         filter("/api/*").through(PersistFilter.class);
-        //ShiroModul shiroModul=new ShiroModul(this.getServletContext());
-        //install(shiroModul);
-        //filter("/*").through(GuiceShiroFilter.class);
     }
 }
