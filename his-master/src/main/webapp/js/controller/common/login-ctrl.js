@@ -4,7 +4,6 @@
 
 var loginCtrl = hisApp.controller("loginCtrl",['$scope','$http','$stateParams','$state',
     'localStorageService',function($scope,$http,$stateParams,$state,localStorageService){
-        alert(localStorageService.get("currentUser"))
     $scope.login=function(){
         //登陆成功后，存储登陆信息
         localStorageService.set("currentUser",'zhangsan');

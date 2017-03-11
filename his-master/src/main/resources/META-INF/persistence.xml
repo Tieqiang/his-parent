@@ -7,17 +7,25 @@
 
     <persistence-unit name="domain" transaction-type="RESOURCE_LOCAL">
         <provider>org.hibernate.ejb.HibernatePersistence</provider>
+        <class>com.his.domain.system.entity.ModuleDict</class>
         <!-- 用户 -->
         <properties>
-             <!--Oracle Dialect -->
-            <property name="hibernate.dialect" value="org.hibernate.dialect.Oracle10gDialect"/>
-            <!--Database Driver —— Oracle-->
-            <property name="hibernate.connection.driver_class" value="oracle.jdbc.driver.OracleDriver"/>
-             <!--Database Connection URL-->
-            <!--<property name="hibernate.connection.url" value="jdbc:oracle:thin:@192.168.0.12:1521:orcl"/>-->
-            <property name="hibernate.connection.url" value="jdbc:oracle:thin:@(description=(address=(protocol=tcp)(port=1521)(host=127.0.0.1))(connect_data=(service_name=oracle)))"/>
-            <property name="hibernate.connection.username" value="jims"/>
-            <property name="hibernate.connection.password" value="hisuser"/>
+
+            <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5Dialect"></property>
+            <property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver"></property>
+            <property name="hibernate.connection.url" value="jdbc:mysql://127.0.0.1:3307/his"></property>
+            <property name="hibernate.connection.username" value="root"/>
+            <property name="hibernate.connection.password" value="1234"></property>
+
+            <!--&lt;!&ndash;Oracle Dialect &ndash;&gt;-->
+            <!--<property name="hibernate.dialect" value="org.hibernate.dialect.Oracle10gDialect"/>-->
+            <!--&lt;!&ndash;Database Driver —— Oracle&ndash;&gt;-->
+            <!--<property name="hibernate.connection.driver_class" value="oracle.jdbc.driver.OracleDriver"/>-->
+             <!--&lt;!&ndash;Database Connection URL&ndash;&gt;-->
+            <!--&lt;!&ndash;<property name="hibernate.connection.url" value="jdbc:oracle:thin:@192.168.0.12:1521:orcl"/>&ndash;&gt;-->
+            <!--<property name="hibernate.connection.url" value="jdbc:oracle:thin:@(description=(address=(protocol=tcp)(port=1521)(host=127.0.0.1))(connect_data=(service_name=oracle)))"/>-->
+            <!--<property name="hibernate.connection.username" value="jims"/>-->
+            <!--<property name="hibernate.connection.password" value="hisuser"/>-->
             <property name="hibernate.show_sql" value="true"/>
             <property name="hibernate.format_sql" value="true"/>
         </properties>

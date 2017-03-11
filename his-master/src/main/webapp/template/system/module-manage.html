@@ -1,0 +1,66 @@
+<div class="row" style="height: 500px;">
+    <div class="col-md-12">
+        <div class="ibox">
+            <div class="ibox-title">
+                <h5>模块维护</h5>
+                <div class="ibox-tools">
+                    <button class="btn btn-sm btn-primary" ng-click="addNewModule();">新增</button>
+                </div>
+            </div>
+            <div class="ibox-content">
+                <table class="table table-bordered table-responsive">
+                    <thead>
+                    <tr>
+                        <td style="width: 40%">模块名称</td>
+                        <td style="width: 10%">模块状态</td>
+                        <td style="width: 30%">图标</td>
+                        <td style="width: 10%">操作</td>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="module in modules">
+                        <td>{{module.moduleName}}</td>
+                        <td>
+                            <span class="badge badge-warning" ng-if="module.state=='0'">已停用</span>
+                            <span class="badge badge-success" ng-if="module.state=='1'">正在使用中</span>
+                        </td>
+                        <td><img ng-src="img/{{module.icon}}" style="height: 50%;"/> </td>
+                        <td>
+                            <button ng-if="module.state==1" class="btn btn-danger btn-sm" ng-click="changeState(module)">停用&nbsp;&nbsp;</button>
+                            <button ng-if="module.state==0" class="btn btn-primary btn-sm" ng-click="changeState(module)">启用&nbsp;&nbsp;</button>
+                            <button class="btn btn-info btn-sm">图标</button>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script id="addNewModule.html" type="text/ng-template">
+    <div class="modal-header">
+        <h3 class="modal-title">新增模块</h3>
+    </div>
+    <div class="modal-body">
+        <form class="form form-horizontal">
+            <input type="hidden" ng-model="currentModule.id"/>
+            <div class="form-group">
+                <label class="control-label col-md-2">模块名称</label>
+                <div class="col-md-10">
+                    <input class="form-control" type="text" ng-model="currentModule.moduleName"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-md-2">图标</label>
+                <div class="col-md-10">
+                    <input class="form-control" type="text" ng-model="currentModule.icon"/>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-primary" type="button" ng-click="mergeModule();">保存</button>
+        <button class="btn btn-warning" type="button" ng-click="closeModule()">取消</button>
+    </div>
+</script>

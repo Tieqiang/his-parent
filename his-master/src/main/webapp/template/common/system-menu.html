@@ -1,0 +1,35 @@
+<div class="row border-bottom white-bg">
+    <nav class="navbar navbar-static-top" role="navigation">
+        <div class="navbar-header" style="width: 77%;">
+            <button aria-controls="navbar" aria-expanded="false" data-target="#navbar" data-toggle="collapse" class="navbar-toggle collapsed" type="button">
+                <i class="fa fa-reorder"></i>
+            </button>
+            <a href="#" class="navbar-brand">系统管理</a>
+        </div>
+        <div class="navbar-collapse collapse" id="navbar">
+            <ul class="nav navbar-nav">
+                <li class="active">
+                    <a aria-expanded="false" role="button" ui-sref="login.systemList">切换系统</a>
+                </li>
+                <li class="dropdown">
+                    <a aria-expanded="false" role="button"  class="dropdown-toggle" data-toggle="dropdown"> 系统模块管理 <span class="caret"></span></a>
+                    <ul role="menu" class="dropdown-menu">
+                        <li><a href="javascript:;" ui-sref="index.adminMain.moduleManage">模块维护</a>
+                        </li>
+                        <li><a href="">模块菜单管理</a>
+                        </li>
+                        <li><a href="">系统参数配置</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            <ul class="nav navbar-top-links navbar-right">
+                <li>
+                    <a ui-sref="login">
+                        <i class="fa fa-sign-out"></i> 退出
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</div>

@@ -17,6 +17,7 @@ hisApp.config(['$stateProvider','$urlRouterProvider',function($stateProvider,$ur
                 templateUrl:'template/common/footer.html'
             },
             'mainContent':{
+                template:'<h1>我是第一页</h1>'
             }
         }
     });
@@ -37,6 +38,31 @@ hisApp.config(['$stateProvider','$urlRouterProvider',function($stateProvider,$ur
             'mainContent@':{
                 templateUrl:'template/common/system-list.html',
                 controller:"systemListCtrl"
+            }
+        }
+    }) ;
+    //平台管理
+    $stateProvider.state('index.adminMain',{
+        url:"/admin-main",
+        views:{
+            'header@':{
+                templateUrl:'template/common/system-menu.html'
+            },
+            'mainContent':{
+                templateUrl:""
+            },
+            'footer':{
+                templateUrl:'template/common/footer.html'
+            }
+        }
+    }) ;
+    //系统管理-模块管理
+    $stateProvider.state('index.adminMain.moduleManage',{
+        url:"/module-manage",
+        views:{
+            'mainContent@':{
+                templateUrl:'template/system/module-manage.html',
+                controller:"moduleManageCtrl"
             }
         }
     })

@@ -4,4 +4,11 @@
 
 var systemListCtrl=hisApp.controller("systemListCtrl",['$scope','$http','$state','localStorageService',function($scope,$http,$state,localStorageService){
 
+    $scope.modules =[] ;
+
+    //获取
+    $http.get("/api/module/list-all").success(function(data){
+        console.log(data);
+        $scope.modules = data ;
+    })
 }])

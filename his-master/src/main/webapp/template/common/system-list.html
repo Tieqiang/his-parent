@@ -1,14 +1,16 @@
 <div class="col-md-12 ibox">
-    <div class="ibox-title">
-        <span>选择登录系统</span>
+    <div class="ibox-heading">
+        <div class="ibox-title">
+            <span>选择登录系统</span>
+        </div>
     </div>
     <div class="ibox-content text-center  animated fadeInRight" >
         <div class="row">
-            <div class="col-md-12">
+            <div class="col-md-10 col-md-offset-2">
                 <!--平台维护-->
                 <div class="file-box">
                     <div class="file">
-                        <a href="javascript:;">
+                        <a href="javascript:;" ui-sref="index.adminMain">
                             <span class="corner">
                             </span>
                             <div class="icon">
@@ -21,40 +23,22 @@
                     </div>
                 </div>
                 <!--系统管理-->
-                <div class="file-box">
+                <div class="file-box" ng-repeat="module in modules">
                     <div class="file">
                         <a href="javascript:;">
                             <span class="corner">
                             </span>
                             <div class="icon">
                                 <i class="fa">
-                                    <img src="img/SYSTEMMGR.png" alt="" class="img-responsive"/>
+                                    <img ng-src="img/{{module.icon}}"class="img-responsive"/>
                                 </i>
                             </div>
                             <div class="file-name">
-                                医院配置
+                                {{module.moduleName}}
                             </div>
                         </a>
                     </div>
                 </div>
-                <!--医疗-->
-                <div class="file-box">
-                    <div class="file">
-                        <a href="javascript:;">
-                            <span class="corner">
-                            </span>
-                            <div class="icon">
-                                <i class="fa">
-                                    <img src="img/DOCTWS.png" alt="" class="img-responsive"/>
-                                </i>
-                            </div>
-                            <div class="file-name">
-                                住院医生站
-                            </div>
-                        </a>
-                    </div>
-                </div>
-
             </div>
         </div>
     </div>
