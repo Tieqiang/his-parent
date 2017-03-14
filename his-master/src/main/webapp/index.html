@@ -12,13 +12,14 @@
     <link rel="stylesheet" href="static/angular/ui-bootstrap-csp.css"/>
     <link rel="stylesheet" href="static/hplus/js/plugins/layer/skin/layer.css"/>
     <link rel="stylesheet" href="static/hplus/js/plugins/layer/laydate/need/laydate.css"/>
+    <link rel="stylesheet" href="static/webUI4Angular/themes/blue/wi-all.css"/>
 </head>
 <body class="gray-bg top-navigation">
 <div class="wrapper">
     <div id="pager-wrapper">
         <div class="row border-bottom white-bg" ui-view="header" >
         </div>
-        <div class="wrapper wrapper-content fadeIn animated" ng-controller="indexCtrl">
+        <div class="wrapper wrapper-content fadeIn animated" ng-controller="indexCtrl" style="padding: 0px;">
             <div class="container-fluid" ui-view="mainContent"></div>
         </div>
         <div class="row" ui-view="footer"></div>
@@ -45,7 +46,9 @@
 <script src="js/controller/common/login-ctrl.js"></script>
 <script src="js/controller/common/index-ctrl.js"></script>
 <script src="js/controller/common/system-list.js"></script>
+<script src="js/controller/common/nav-menu-ctrl.js"></script>
 <script src="js/controller/system/system-manager.js"></script>
 <script src="js/controller/system/module-manage.js"></script>
+<script src="js/controller/system/module-menu.js"></script>
 </body>
 </html>

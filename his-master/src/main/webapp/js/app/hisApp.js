@@ -2,7 +2,7 @@
  * Created by heren on 2017/3/9.
  */
 
-var hisApp = angular.module("hisApp",['ui.router','LocalStorageModule','ui.bootstrap']) ;
+var hisApp = angular.module("hisApp",['ui.router','LocalStorageModule','ui.bootstrap','ui.wisoft']) ;
 
 hisApp.config(["localStorageServiceProvider",function(localStorageServiceProvider){
     //https://github.com/Tieqiang/angular-local-storage

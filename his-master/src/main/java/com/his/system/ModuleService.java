@@ -47,6 +47,10 @@ public class ModuleService {
     }
 
 
+    /**
+     * 获取所有的模块
+     * @return
+     */
     @GET
     @Path("list-all")
     public List<ModuleDict> listAllModule(){
@@ -56,6 +60,11 @@ public class ModuleService {
         return moduleDicts ;
     }
 
+    /**
+     * 提交修改模块
+     * @param moduleDict 模块信息
+     * @return
+     */
     @POST
     @Path("merge")
     @Transactional

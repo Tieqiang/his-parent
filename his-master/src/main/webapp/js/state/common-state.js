@@ -9,10 +9,6 @@ hisApp.config(['$stateProvider','$urlRouterProvider',function($stateProvider,$ur
     $stateProvider.state("index",{
         url:'/index',
         views:{
-            'header':{
-                url:"template/common/nav-menu.html",
-                controller:"navMenuCtrl"
-            },
             'footer':{
                 templateUrl:'template/common/footer.html'
             },
@@ -65,6 +61,27 @@ hisApp.config(['$stateProvider','$urlRouterProvider',function($stateProvider,$ur
                 controller:"moduleManageCtrl"
             }
         }
-    })
+    });
+    //系统管理-模块菜单
+    $stateProvider.state("index.adminMain.moduleMenu",{
+        url:'/module-menu',
+        views:{
+            'mainContent@':{
+                templateUrl:'template/system/module-menu.html',
+                controller:'moduleMenuCtrl'
+            }
+        }
+    }) ;
 
+
+    //某一个系统模块
+    $stateProvider.state("index.moduleSystem",{
+        url:"/module-system",
+        views:{
+            'header@':{
+                templateUrl:"template/common/nav-menu.html",
+                controller:"navMenuCtrl"
+            }
+        }
+    });
 }])

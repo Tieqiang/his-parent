@@ -7,11 +7,15 @@ var moduleManageCtrl = hisApp.controller("moduleManageCtrl",['$scope','$http','$
     $scope.modules=[] ;
 
     $scope.currentModule={} ;
-    //获取所有的列表
-    $http.get("api/module/list-all").success(function(data){
-        $scope.modules = data ;
-        console.log($scope.modules);
-    }) ;
+    $scope.loadModules = function(){
+        //获取所有的列表
+        $http.get("api/module/list-all").success(function(data){
+            $scope.modules = data ;
+            console.log($scope.modules);
+        }) ;
+    } ;
+
+    $scope.loadModules() ;
 
     //设置模块的状态
     $scope.changeState = function(module){
@@ -40,20 +44,96 @@ var moduleManageCtrl = hisApp.controller("moduleManageCtrl",['$scope','$http','$
         $scope.currentModule.state="1";
         $http.post("/api/module/merge",$scope.currentModule).success(function(data){
             parent.layer.alert("修改成功！",{icon:'1'})
+            $scope.loadModules() ;
         })
     }
 
-    $scope.closeModule = function(){
-
-    }
 
     //新增模块
     $scope.addNewModule=function(){
-        $uibModal.open({
+        $scope.currentModule = {} ;
+        var modalInstance=$uibModal.open({
             templateUrl:'addNewModule.html',
-            controller:"moduleManageCtrl"
+            controller:"modalInstanceCtrl",
+            controllerAs:"$ctrl",
+            backdrop:false,
+            size:"modal-sm",
+            resolve:{
+                currentModule:function(){
+                    return $scope.currentModule ;
+                },
+                action:function(){
+                    return "新增"
+                }
+            }
         });
+
+        modalInstance.opened.then(function(){
+            //窗口打开时间
+        });
+
+        //处理窗口的结果
+        modalInstance.result.then(function(result){
+            if("cancel"==result){
+                return ;
+            }else{
+                $scope.currentModule = result.$value ;
+                $scope.mergeModule() ;
+            }
+        })
+
+    }
+
+
+    //编辑模块
+
+    $scope.editModule=function(module){
+        $scope.currentModule = module ;
+        var modalInstance=$uibModal.open({
+            templateUrl:'addNewModule.html',
+            controller:"modalInstanceCtrl",
+            controllerAs:"$ctrl",
+            backdrop:false,
+            size:"modal-sm",
+            resolve:{
+                currentModule:function(){
+                    return $scope.currentModule ;
+                },
+                action:function(){
+                    return "编辑"
+                }
+            }
+        });
+        //处理窗口的结果
+        modalInstance.result.then(function(result){
+            if("cancel"==result){
+                return ;
+            }else{
+                $scope.currentModule = result.$value ;
+                $scope.mergeModule() ;
+            }
+        })
     }
 }]);
 
-var modalInstanceCtrl = hisApp.controller('modalInstanceCtrl',[''])
+var modalInstanceCtrl = hisApp.controller('modalInstanceCtrl',['$scope','$uibModalInstance','currentModule','action',function($scope,$uibModalInstance,currentModule,action){
+
+    $scope.currentModule = currentModule ;
+    $scope.action=action ;
+
+    $scope.closeModule = function(){
+        console.log(currentModule);
+        $uibModalInstance.dismiss({$value:"cancel"});
+    }
+
+
+    $scope.onOk=function(){
+        if(!$scope.currentModule.moduleName){
+            parent.layer.alert("模块名称不能为空!",{icon:'2'}) ;
+            return ;
+        }else{
+            $uibModalInstance.close({$value:$scope.currentModule});
+        }
+    }
+
+}])

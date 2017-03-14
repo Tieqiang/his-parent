@@ -10,5 +10,13 @@ var systemListCtrl=hisApp.controller("systemListCtrl",['$scope','$http','$state'
     $http.get("/api/module/list-all").success(function(data){
         console.log(data);
         $scope.modules = data ;
-    })
+    });
+
+    //点击模块进入系统
+    $scope.enterModule=function(module){
+        localStorageService.set("module",module);
+        $state.go("index.moduleSystem")
+    }
+
+
 }])
