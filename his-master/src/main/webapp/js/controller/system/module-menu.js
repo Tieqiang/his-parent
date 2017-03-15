@@ -55,6 +55,7 @@ var moduleMenuCtrl = hisApp.controller("moduleMenuCtrl",['$scope','$http','$uibM
             var obj={} ;
             obj.id=$scope.menus[i].id ;
             obj.menuName=$scope.menus[i].menuName ;
+            obj.menuState=$scope.menus[i].menuState ;
             obj.icon=$scope.menus[i].icon ;
             obj.parentMenuId = $scope.menus[i].parentMenuId ;
             obj.children=[] ;
@@ -85,6 +86,7 @@ var moduleMenuCtrl = hisApp.controller("moduleMenuCtrl",['$scope','$http','$uibM
             menu.menuHref=$scope.currentMenu.menuHref ;
             menu.icon=$scope.currentMenu.icon ;
             menu.moduleId=$scope.currentMenu.moduleId ;
+            menu.menuState=$scope.currentMenu.menuState ;
         }
         $http.post("/api/menu/merge",menu).success(function(data){
             $scope.loadModuleMenus() ;

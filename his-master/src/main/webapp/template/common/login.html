@@ -6,10 +6,15 @@
 
     <form class="m-t" role="form" action="index.html">
         <div class="form-group">
-            <input type="email" class="form-control" placeholder="用户名" required="">
+            <input type="email" class="form-control" ng-model="loginUser.userName" placeholder="用户名" required="">
         </div>
         <div class="form-group">
             <input type="password" class="form-control" placeholder="密码" required="">
+        </div>
+        <div class="form-group">
+            <select class="form-control" name="hospitals" ng-model="loginUser.hospitalId">
+                <option ng-repeat="hospital in myHospitals" value="{{hospital.id}}">{{hospital.hospitalName}}</option>
+            </select>
         </div>
         <button type="button" class="btn btn-primary block full-width m-b" ng-click="login();">登 录</button>
     </form>

@@ -9,6 +9,7 @@
         <provider>org.hibernate.ejb.HibernatePersistence</provider>
         <class>com.his.domain.system.entity.ModuleDict</class>
         <class>com.his.domain.system.entity.MenuDict</class>
+        <class>com.his.domain.system.entity.HospitalInfo</class>
         <!-- 用户 -->
         <properties>
 

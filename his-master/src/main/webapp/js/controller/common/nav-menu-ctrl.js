@@ -29,6 +29,7 @@ var navMenuCtrl = hisApp.controller('navMenuCtrl',['$scope','$http','localStorag
             var obj={} ;
             obj.id=$scope.menus[i].id ;
             obj.menuName=$scope.menus[i].menuName ;
+            obj.menuState=$scope.menus[i].menuState ;
             obj.icon=$scope.menus[i].icon ;
             obj.parentMenuId = $scope.menus[i].parentMenuId ;
             obj.children=[] ;

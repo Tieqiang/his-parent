@@ -73,6 +73,16 @@ hisApp.config(['$stateProvider','$urlRouterProvider',function($stateProvider,$ur
         }
     }) ;
 
+    $stateProvider.state("index.adminMain.hospitalManage",{
+        url:"/hosp-manage",
+        views:{
+            'mainContent@':{
+                templateUrl:"template/system/hospital.html",
+                controller:"sysHospitalCtrl"
+            }
+        }
+    });
+
 
     //某一个系统模块
     $stateProvider.state("index.moduleSystem",{
@@ -81,6 +91,17 @@ hisApp.config(['$stateProvider','$urlRouterProvider',function($stateProvider,$ur
             'header@':{
                 templateUrl:"template/common/nav-menu.html",
                 controller:"navMenuCtrl"
+            }
+        }
+    });
+
+    //机构详细信息设置
+    $stateProvider.state("index.moduleSystem.hospInfo",{
+        url:"/hosp-info",
+        views:{
+            'mainContent@':{
+                templateUrl:'template/system/hosp-info.html',
+                controller:"hospitalInfoCtrl"
             }
         }
     });

@@ -1,0 +1,90 @@
+<div class="row">
+    <div class="col-md-12 panel panel-success" style="padding: 0px;">
+        <div class="panel-heading">
+            <div class="panel-title">
+                <h5>医院管理</h5>
+            </div>
+        </div>
+        <div class="panel-body">
+            <wi-datagrid dataProvider="hospitals" wid="hospDg" width="100%" height="450" pagemode="none"
+                    showno="false" itemclick="setCurrentHospital" pagebarrenderer="tool.html">
+                <script id="tool.html" type="text/ng-template">
+                    <a href="javascript:;" ng-click="$emit('addHospitalEvent')"> <span class="icon-plus"></span>添加机构</a>
+                    <a href="javascript:;" ng-click="$emit('editHospitalEvent')"><span class="icon-edit"></span>编辑机构</a>
+                </script>
+                <wi-datagrid-column headtext="id" datafield="id" hidden></wi-datagrid-column>
+                <wi-datagrid-column headtext="医院名称" datafield="hospitalName"></wi-datagrid-column>
+                <wi-datagrid-column headtext="组织编码" datafield="organizationCode"></wi-datagrid-column>
+                <wi-datagrid-column headtext="邮编" datafield="zipCode"></wi-datagrid-column>
+                <wi-datagrid-column headtext="联系地址" datafield="address"></wi-datagrid-column>
+                <wi-datagrid-column headtext="联系人" datafield="contactPerson"></wi-datagrid-column>
+                <wi-datagrid-column headtext="联系电话" datafield="contactPhone"></wi-datagrid-column>
+                <wi-datagrid-column headtext="运行状态" datafield="hospitalStatus"></wi-datagrid-column>
+            </wi-datagrid>
+        </div>
+    </div>
+</div>
+
+
+<script  type="text/ng-template" id="editHospital.html">
+    <div class="modal-header">
+        <div class="modal-title">
+            <h5>{{action}}</h5>
+        </div>
+    </div>
+    <div class="modal-body">
+        <form class="form-horizontal">
+            <input type="hidden" ng-model="currentHospital.id"/>
+            <div class="form-group">
+                <label class="control-label col-md-2">医院名称</label>
+                <div class="col-md-10">
+                    <input class="form-control" type="text" ng-model="currentHospital.hospitalName"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-md-2">组织编码</label>
+                <div class="col-md-10">
+                    <input class="form-control" type="text" ng-model="currentHospital.organizationCode"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-md-2">地址</label>
+                <div class="col-md-10">
+                    <input class="form-control" type="text" ng-model="currentHospital.address"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-md-2">邮编</label>
+                <div class="col-md-10">
+                    <input class="form-control" type="text" ng-model="currentHospital.zipCode"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-md-2">联系人</label>
+                <div class="col-md-10">
+                    <input class="form-control" type="text" ng-model="currentHospital.contactPerson"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-md-2">联系电话</label>
+                <div class="col-md-10">
+                    <input class="form-control" type="text" ng-model="currentHospital.contactPhone"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-md-2">使用状态</label>
+                <div class="col-md-10">
+                    <select class="form-control" ng-model="currentHospital.hospitalStatus">
+                        <option value="1">正在使用</option>
+                        <option value="0">暂停使用</option>
+                    </select>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-primary" ng-click="doOk();">保存</button>
+        <button class="btn btn-white" ng-click="cancel();">取消</button>
+    </div>
+
+</script>

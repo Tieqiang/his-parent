@@ -9,7 +9,7 @@
         <div class="navbar-collapse collapse" id="navbar">
             <ul class="nav navbar-nav">
                 <li class="active" ng-repeat="menu in menuData" ng-if="!menu.children.length">
-                    <a aria-expanded="false" role="button" ui-sref="menu.menuState">{{menu.menuName}}</a>
+                    <a ng-if="menu.menuState" aria-expanded="false" role="button" ui-sref="{{menu.menuState}}">{{menu.menuName}}</a>
                 </li>
                 <li class="dropdown" ng-repeat="menu in menuData" ng-if="menu.children.length">
                     <a aria-expanded="false" role="button"  class="dropdown-toggle" data-toggle="dropdown"> {{menu.menuName}} <span class="caret"></span></a>
