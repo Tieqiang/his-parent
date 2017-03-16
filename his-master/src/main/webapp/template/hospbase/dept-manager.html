@@ -1,0 +1,57 @@
+<div class="row">
+    <div class="col-md-12">
+        <div class="panel panel-default" style="height: 450px;">
+            <div class="panel-heading">
+                <div class="panel-title">
+                    <h5>{{currentHospital.hospitalName}}-科室管理</h5>
+                </div>
+            </div>
+            <div class="panel-body">
+                <wi-datagrid height="450" width="100%" treefield="deptName" dataprovider="deptData"
+                        itemclick="setCurrentDept" showno="false">
+                    <script type="text/ng-template" id="tools.html">
+                        <a href="javascript:;" ng-click="$emit('addDeptEvent')"> <span class="icon-plus"></span>添加科室&nbsp;&nbsp;</a>
+                        <a href="javascript:;" ng-click="$emit('editDeptEvent')"><span class="icon-edit"></span>编辑科室&nbsp;&nbsp;</a>
+                        <a href="javascript:;" ng-click="$emit('addSubDeptEvent')"><span class="icon-edit"></span>添加子科室&nbsp;&nbsp;</a>
+                        <a href="javascript:;" ng-click="$emit('removeDeptEvent')"><span class="icon-remove"></span>删除科室&nbsp;&nbsp;</a>
+                    </script>
+                    <wi-datagrid-column headtext="科室名称" datafield="deptName"></wi-datagrid-column>
+                    <wi-datagrid-column headtext="科室代码" datafield="deptCode"></wi-datagrid-column>
+                </wi-datagrid>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script id="dept.html" type="text/ng-template">
+    <div class="modal-header">
+        <div class="modal-title">
+            <h5>{{action}}</h5>
+        </div>
+    </div>
+    <div class="modal-body">
+        <form class="form form-horizontal">
+
+            <div class="form-group">
+                <lable class="control-label col-md-2">科室名称</lable>
+                <div class="col-md-10">
+                    <input class="form-control" type="text" placeholder="科室名称"/>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <lable class="control-label col-md-2">科室代码</lable>
+                <div class="col-md-10">
+                    <input class="form-control" type="text" placeholder="科室编码，两位一组"/>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-md-2">上级科室</label>
+                <div class="col-md-10">
+                    <input class="form-control" type="text"/>
+                </div>
+            </div>
+        </form>
+    </div>
+</script>
