@@ -8,6 +8,7 @@ import com.his.domain.system.entity.HospitalInfo;
 import javax.inject.Inject;
 import javax.ws.rs.*;
 import javax.ws.rs.core.Response;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -35,6 +36,13 @@ public class HospitalService {
     @Path("list-all")
     public List<HospitalInfo> hospitalInfoList(){
         return baseFacade.findAll(HospitalInfo.class);
+    }
+
+    @GET
+    @Path("list-by-status")
+    public List<HospitalInfo> listByStatus(@QueryParam("status") String status){
+        String hql = "from HospitalInfo as info where info.hospitalStatus='"+status+"'" ;
+        return baseFacade.createQuery(HospitalInfo.class,hql,new ArrayList<>()).getResultList();
     }
 
     @POST

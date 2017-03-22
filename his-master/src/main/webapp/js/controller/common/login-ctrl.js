@@ -15,7 +15,7 @@ var loginCtrl = hisApp.controller("loginCtrl",['$scope','$http','$stateParams','
 
     $scope.getHospitalByUserName = function(userName){
         //此处要根据新的接口修改
-        $http.get("/api/hospital/list-all").success(function(data){
+        $http.get("/api/hospital/list-by-status?status=1").success(function(data){
             $scope.myHospitals = data ;
         })
     }

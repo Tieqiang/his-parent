@@ -71,6 +71,16 @@ var deptManagerCtrl = hisApp.controller('deptManagerCtrl',['$scope','$http','loc
 
     //添加子科室
     $scope.$on("addSubDeptEvent",function(){
+        if(!$scope.currentDept){
+            parent.layer.alert("系统提示：请选择要添加子科室的科室",{"icon":2}) ;
+            return ;
+        }
+        if(!$scope.currentDept.id){
+            parent.layer.alert("系统提示：请先保存数据，然后在添加子科室",{"icon":2});
+            return ;
+        }
+
+        $scope.openDeptModal("新增子科室");
 
     });
 
@@ -78,7 +88,7 @@ var deptManagerCtrl = hisApp.controller('deptManagerCtrl',['$scope','$http','loc
 
     //删除科室
 
-    //保存机构
+    //修改科室
     $scope.mergeDept=function(){
         if($scope.currentDept){
             var obj = {} ;
@@ -93,11 +103,11 @@ var deptManagerCtrl = hisApp.controller('deptManagerCtrl',['$scope','$http','loc
     }
 
 
-    $scope.openDeptModal=function(action){
 
+    $scope.openDeptModal=function(action){
         var modalInstance = $uibModal.open({
             templateUrl: "dept.html",
-            controller: "modalInstanceCtrl",
+            controller: "deptModalInstance",
             backdrop: false,
             size: "modal-sm",
             resolve:{
@@ -121,7 +131,7 @@ var deptManagerCtrl = hisApp.controller('deptManagerCtrl',['$scope','$http','loc
 
 }]);
 
-var modalInstanceCtrl = hisApp.controller('modalInstanceCtrl',['$scope','$uibModalInstance','currentDept','action',function($scope,$uibModalInstance,currentDept,action){
+var deptModalInstance = hisApp.controller('deptModalInstance',['$scope','$uibModalInstance','currentDept',"action",function($scope,$uibModalInstance,currentDept,action){
     $scope.currentDept = currentDept ;
     $scope.action=action ;
 

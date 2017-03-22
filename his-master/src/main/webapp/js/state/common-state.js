@@ -73,6 +73,17 @@ hisApp.config(['$stateProvider','$urlRouterProvider',function($stateProvider,$ur
         }
     }) ;
 
+    //系统管理-平台字典维护
+    $stateProvider.state("index.adminMain.baseDict",{
+        url:"/base-dict",
+        views:{
+            'mainContent@':{
+                templateUrl:'template/system/base-dict.html',
+                controller:"baseDictCtrl"
+            }
+        }
+    })
+
     $stateProvider.state("index.adminMain.hospitalManage",{
         url:"/hosp-manage",
         views:{
@@ -105,4 +116,17 @@ hisApp.config(['$stateProvider','$urlRouterProvider',function($stateProvider,$ur
             }
         }
     });
+
+    //系统管理：科室管理模块
+    $stateProvider.state("index.moduleSystem.deptManager",{
+        url:"/dept-manager",
+        views:{
+            'mainContent@':{
+                templateUrl:'template/hospbase/dept-manager.html',
+                controller:"deptManagerCtrl"
+            }
+        }
+    });
+
+
 }])

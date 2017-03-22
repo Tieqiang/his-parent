@@ -7,8 +7,8 @@
                 </div>
             </div>
             <div class="panel-body">
-                <wi-datagrid height="450" width="100%" treefield="deptName" dataprovider="deptData"
-                        itemclick="setCurrentDept" showno="false">
+                <wi-datagrid height="400" width="100%" treefield="deptName" dataprovider="deptData"
+                        itemclick="setCurrentDept" showno="false" pagebarrenderer="tools.html">
                     <script type="text/ng-template" id="tools.html">
                         <a href="javascript:;" ng-click="$emit('addDeptEvent')"> <span class="icon-plus"></span>添加科室&nbsp;&nbsp;</a>
                         <a href="javascript:;" ng-click="$emit('editDeptEvent')"><span class="icon-edit"></span>编辑科室&nbsp;&nbsp;</a>
@@ -31,27 +31,32 @@
     </div>
     <div class="modal-body">
         <form class="form form-horizontal">
-
+            <input type="hidden" ng-model="currentDept.id">
             <div class="form-group">
                 <lable class="control-label col-md-2">科室名称</lable>
                 <div class="col-md-10">
-                    <input class="form-control" type="text" placeholder="科室名称"/>
+                    <input class="form-control" type="text" placeholder="科室名称" ng-model="currentDept.deptName"/>
                 </div>
             </div>
 
             <div class="form-group">
                 <lable class="control-label col-md-2">科室代码</lable>
                 <div class="col-md-10">
-                    <input class="form-control" type="text" placeholder="科室编码，两位一组"/>
+                    <input class="form-control" type="text" placeholder="科室编码，两位一组" ng-model="currentDept.deptCode" />
                 </div>
             </div>
 
             <div class="form-group">
                 <label class="control-label col-md-2">上级科室</label>
                 <div class="col-md-10">
-                    <input class="form-control" type="text"/>
+                    <input class="form-control" type="text" ng-model="currentDept.parentId"/>
                 </div>
             </div>
         </form>
     </div>
+    <div class="modal-footer">
+        <button class="btn btn-primary" ng-click="doOk();">保存</button>
+        <button class="btn btn-white" ng-click="cancel();">取消</button>
+    </div>
+
 </script>
