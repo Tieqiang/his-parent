@@ -1,14 +1,14 @@
 <div class="row">
     <div class="col-md-12">
-        <div class="panel panel-default" style="height: 450px;">
+        <div class="panel panel-default" style="min-height: 550px;">
             <div class="panel-heading">
                 <div class="panel-title">
                     <h5>{{currentHospital.hospitalName}}-科室管理</h5>
                 </div>
             </div>
-            <div class="panel-body">
-                <wi-datagrid height="400" width="100%" treefield="deptName" dataprovider="deptData"
-                        itemclick="setCurrentDept" showno="false" pagebarrenderer="tools.html">
+            <div class="panel-body" style="padding: 0px">
+                <wi-datagrid height="{{dgHeight}}" width="100%" treefield="deptName" dataprovider="deptData"
+                        itemclick="setCurrentDept" showno="false" pagebarrenderer="tools.html" headerheight="30">
                     <script type="text/ng-template" id="tools.html">
                         <a href="javascript:;" ng-click="$emit('addDeptEvent')"> <span class="icon-plus"></span>添加科室&nbsp;&nbsp;</a>
                         <a href="javascript:;" ng-click="$emit('editDeptEvent')"><span class="icon-edit"></span>编辑科室&nbsp;&nbsp;</a>

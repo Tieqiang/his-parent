@@ -10,6 +10,7 @@ var deptManagerCtrl = hisApp.controller('deptManagerCtrl',['$scope','$http','loc
     $scope.deptData=[] ;
     $scope.currentDept=undefined;
 
+    $scope.dgHeight = 530;
 
     $scope.loginUser=localStorageService.get("currentUser") ;
     if(!$scope.loginUser.hospitalId){

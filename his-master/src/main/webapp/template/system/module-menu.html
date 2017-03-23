@@ -4,8 +4,8 @@
             <h5>模块菜单管理</h5>
         </div>
         <div class="panel-body">
-            <wi-datagrid dataProvider="modules" wid="moduleDg" width="100%" height="450" pagemode="none"
-                    showno="false" itemclick="setCurrentModule">
+            <wi-datagrid dataProvider="modules" wid="moduleDg" width="100%" pagemode="none" height="{{height}}"
+                    showno="false" itemclick="setCurrentModule" headerheight="{{headerheight}}">
                 <wi-datagrid-column headtext="模块名称" datafield="moduleName"></wi-datagrid-column>
             </wi-datagrid>
         </div>
@@ -16,8 +16,8 @@
             <h5>菜单列表</h5>
         </div>
         <div class="panel-body">
-            <wi-datagrid dataProvider="menuData" wid="dg" width="100%" height="450"
-                          pagemode="none" showno="true"
+            <wi-datagrid dataProvider="menuData" wid="dg" width="100%"
+                          pagemode="none" showno="true" height="{{height}}" headerheight="{{headerheight}}"
                           treeField="menuName" itemclick="setCurrentMenu" pagebarrenderer="tool.html">
                 <script id="tool.html" type="text/ng-template">
                     <a href="javascript:;" ng-click="$emit('addMenuEvent')"> <span class="icon-plus"></span>添加菜单</a>

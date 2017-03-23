@@ -4,7 +4,9 @@
 
 //菜单模块管理
 var moduleMenuCtrl = hisApp.controller("moduleMenuCtrl",['$scope','$http','$uibModal',function($scope,$http,$uibModal){
-
+    //表格参数设置
+    $scope.height=500;
+    $scope.headerheight=30;
     //模块列表
     $scope.modules=[] ;
     //菜单数组
