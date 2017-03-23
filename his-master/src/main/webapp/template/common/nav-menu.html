@@ -14,7 +14,7 @@
                 <li class="dropdown" ng-repeat="menu in menuData" ng-if="menu.children.length">
                     <a aria-expanded="false" role="button"  class="dropdown-toggle" data-toggle="dropdown"> {{menu.menuName}} <span class="caret"></span></a>
                     <ul role="menu" class="dropdown-menu">
-                        <li ng-repeat="subMenu in menu.children"><a href="javascript:;" ui-sref="index.adminMain.moduleManage">{{subMenu.menuName}}</a>
+                        <li ng-repeat="subMenu in menu.children"><a href="javascript:;" ui-sref="{{subMenu.menuState}}">{{subMenu.menuName}}</a>
                         </li>
                     </ul>
                 </li>

@@ -13,17 +13,18 @@
     <link rel="stylesheet" href="static/hplus/js/plugins/layer/skin/layer.css"/>
     <link rel="stylesheet" href="static/hplus/js/plugins/layer/laydate/need/laydate.css"/>
     <link rel="stylesheet" href="static/webUI4Angular/themes/blue/wi-all.css"/>
+    <link rel="stylesheet" href="static/angular-ui-grid/ui-grid.css">
     <link rel="stylesheet" href="css/common.css">
 </head>
 <body class="gray-bg top-navigation">
-<div class="wrapper">
+<div class="wrapper" style="padding: 2px;">
     <div id="pager-wrapper">
-        <div class="row border-bottom white-bg" ui-view="header" >
+        <div class="border-bottom white-bg" ui-view="header" >
         </div>
-        <div class="wrapper wrapper-content fadeIn animated" ng-controller="indexCtrl" style="padding: 0px;min-height: 550px;width: 100%">
-            <div class="container-fluid" ui-view="mainContent"></div>
+        <div class="wrapper wrapper-content fadeIn animated" ng-controller="indexCtrl" style="padding: 0px;min-height: 540px;width: 100%">
+            <div class="container-fluid" style="padding: 5px 0px;" ui-view="mainContent"></div>
         </div>
-        <div class="row" ui-view="footer"></div>
+        <div  ui-view="footer"></div>
     </div>
 </div>
 <script src="static/hplus/js/jquery.min.js"></script>
@@ -33,6 +34,7 @@
 <script src="static/angular/angular-local-storage.js"></script>
 <script src="static/angular/ui-bootstrap.min.js"></script>
 <script src="static/angular/ui-bootstrap-tpls.min.js"></script>
+<script src="static/angular-ui-grid/ui-grid.js"></script>
 <script src="static/hplus/js/bootstrap.min.js?v=3.3.6"></script>
 <script src="static/hplus/js/plugins/layer/laydate/laydate.js"></script>
 <script src="static/hplus/js/plugins/layer/layer.min.js"></script>
@@ -48,12 +50,15 @@
 <script src="js/controller/common/index-ctrl.js"></script>
 <script src="js/controller/common/system-list.js"></script>
 <script src="js/controller/common/nav-menu-ctrl.js"></script>
+<!--系统管理-->
 <script src="js/controller/system/system-manager.js"></script>
 <script src="js/controller/system/module-manage.js"></script>
 <script src="js/controller/system/module-menu.js"></script>
 <script src="js/controller/system/sys-hospital.js"></script>
 <script src="js/controller/system/hospial-info.js"></script>
 <script src="js/controller/system/base-dict.js"></script>
+<!--基础功能配置-->
 <script src="js/controller/hospbase/dept-manager.js"></script>
+<script src="js/controller/hospbase/hosp-dict.js"></script>
 </body>
 </html>

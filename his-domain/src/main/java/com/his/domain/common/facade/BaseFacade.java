@@ -25,6 +25,11 @@ public class BaseFacade {
     protected BaseFacade() {
     }
 
+    public int executeUpdate(String hql){
+        int i = entityManager.createQuery(hql).executeUpdate();
+        return i ;
+    }
+
     protected <T> T strictFindByPrimaryKey(Class<T> entityClass, Object key, String... exceptionMsg) throws Exception {
         String msg = exceptionMsg != null && exceptionMsg.length > 0 ? exceptionMsg[0] : "指定的资源无法找到";
         if (key == null) {

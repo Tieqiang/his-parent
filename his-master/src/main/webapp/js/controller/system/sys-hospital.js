@@ -21,7 +21,7 @@ var sysHospitalCtrl = hisApp.controller('sysHospitalCtrl',['$scope','$http','$ui
     $scope.openHospitalModule=function(action){
         var modalInstance = $uibModal.open({
             templateUrl:"editHospital.html",
-            controller:"modalInstanceCtrl",
+            controller:"hospitalModalInstanceCtrl",
             backdrop:false,
             size:"modal-sm",
             resolve:{
@@ -69,7 +69,7 @@ var sysHospitalCtrl = hisApp.controller('sysHospitalCtrl',['$scope','$http','$ui
     })
 }]);
 
-var modalInstanceCtrl = hisApp.controller("modalInstanceCtrl",['$scope','action','currentHospital','$uibModalInstance',function($scope,action,currentHospital,$uibModalInstance){
+var hospitalModalInstanceCtrl = hisApp.controller("hospitalModalInstanceCtrl",['$scope','action','currentHospital','$uibModalInstance',function($scope,action,currentHospital,$uibModalInstance){
     $scope.currentHospital = currentHospital ;
     $scope.action = action ;
 

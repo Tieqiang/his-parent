@@ -54,7 +54,7 @@ var moduleManageCtrl = hisApp.controller("moduleManageCtrl",['$scope','$http','$
         $scope.currentModule = {} ;
         var modalInstance=$uibModal.open({
             templateUrl:'addNewModule.html',
-            controller:"modalInstanceCtrl",
+            controller:"moduleManagerModalInstanceCtrl",
             controllerAs:"$ctrl",
             backdrop:false,
             size:"modal-sm",
@@ -91,7 +91,7 @@ var moduleManageCtrl = hisApp.controller("moduleManageCtrl",['$scope','$http','$
         $scope.currentModule = module ;
         var modalInstance=$uibModal.open({
             templateUrl:'addNewModule.html',
-            controller:"modalInstanceCtrl",
+            controller:"moduleManagerModalInstanceCtrl",
             controllerAs:"$ctrl",
             backdrop:false,
             size:"modal-sm",
@@ -116,7 +116,7 @@ var moduleManageCtrl = hisApp.controller("moduleManageCtrl",['$scope','$http','$
     }
 }]);
 
-var modalInstanceCtrl = hisApp.controller('modalInstanceCtrl',['$scope','$uibModalInstance','currentModule','action',function($scope,$uibModalInstance,currentModule,action){
+var moduleManagerModalInstanceCtrl = hisApp.controller('moduleManagerModalInstanceCtrl',['$scope','$uibModalInstance','currentModule','action',function($scope,$uibModalInstance,currentModule,action){
 
     $scope.currentModule = currentModule ;
     $scope.action=action ;

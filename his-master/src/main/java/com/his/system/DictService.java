@@ -1,14 +1,13 @@
 package com.his.system;
 
 import com.google.inject.Inject;
+import com.google.inject.persist.Transactional;
 import com.his.domain.common.facade.BaseFacade;
 import com.his.domain.system.entity.BaseDict;
 import com.his.domain.system.entity.BaseDictType;
 
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
-import javax.ws.rs.QueryParam;
+import javax.ws.rs.*;
+import javax.ws.rs.core.Response;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -51,6 +50,61 @@ public class DictService {
     }
 
 
+    /**
+     * 更新键值变化
+     * @param baseDict
+     * @return
+     */
+    @Transactional
+    @POST
+    @Path("base-dict-merge")
+    public Response mergeBaseDict(BaseDict baseDict){
+        BaseDict dict = baseFacade.merge(baseDict);
+        return Response.status(Response.Status.OK).entity(dict).build();
+    }
+
+    /**
+     * 更新字典
+     * @param baseDictType
+     * @return
+     */
+    @Transactional
+    @POST
+    @Path("base-dict-type-merge")
+    public Response mergeBaseDict(BaseDictType baseDictType){
+        BaseDictType dict = baseFacade.merge(baseDictType);
+        return Response.status(Response.Status.OK).entity(dict).build();
+    }
+
+    /**
+     * 删除字典
+     * @param id
+     * @return
+     */
+    @POST
+    @Path("base-dict-type-del")
+    @Transactional
+    public Response delBaseDictType(@QueryParam("id") String id){
+        String delHql ="delete BaseDictType where id='"+id+"'" ;
+        String delBase = "delete BaseDict where typeId='"+id+"'" ;
+        baseFacade.executeUpdate(delHql);
+        baseFacade.executeUpdate(delBase);
+        return Response.status(Response.Status.OK).build();
+    }
+
+    /**
+     * 删除键值
+     * @param id
+     * @return
+     */
+    @POST
+    @Path("base-dict-del")
+    @Transactional
+    public Response delBaseDict(@QueryParam("id") String id){
+        String delBase = "delete BaseDict where id='"+id+"'" ;
+        baseFacade.executeUpdate(delBase);
+        return Response.status(Response.Status.OK).build();
+    }
 
 
 }

@@ -117,6 +117,17 @@ hisApp.config(['$stateProvider','$urlRouterProvider',function($stateProvider,$ur
         }
     });
 
+    //基础字典管理
+    $stateProvider.state("index.moduleSystem.hospDict",{
+        url:"/hosp-dict",
+        views:{
+            'mainContent@':{
+                templateUrl:"template/hospbase/hosp-dict.html",
+                controller:"hospDictCtrl"
+            }
+        }
+    })
+
     //系统管理：科室管理模块
     $stateProvider.state("index.moduleSystem.deptManager",{
         url:"/dept-manager",

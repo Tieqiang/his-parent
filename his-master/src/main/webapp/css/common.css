@@ -1,3 +1,44 @@
 .ibox-content{
     padding: 0px;
 }
+.ibox{
+    margin-bottom:0px;
+}
+
+
+
+.headerCellClass {
+    background-color: #f5f5f5;
+    color: #000000;
+    border-bottom: none;
+    border-color: #e5e5e5;
+    text-align: center;
+    height: 30px;
+}
+
+.cellClass {
+    border-bottom: 1px solid;
+    border-color: #dddddd;
+    background-color: #ffffff;
+    text-align: center;
+
+}
+.ui-grid-cell{
+    height: 50px;
+}
+
+
+/*奇数行的颜色*/
+.ui-grid-row:nth-child(even) .ui-grid-cell {
+    background-color: #ffffff;
+}
+
+/*偶数行的颜色*/
+.ui-grid-row:nth-child(odd) .ui-grid-cell {
+    background-color: #ffffff;
+}
+/*最后一行的颜色*/
+.ui-grid-row:last-child .ui-grid-cell {
+    border-bottom-color: #d4d4d4;
+    border-bottom: 1px solid;
+}
