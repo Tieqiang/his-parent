@@ -41,4 +41,6 @@
 .ui-grid-row:last-child .ui-grid-cell {
     border-bottom-color: #d4d4d4;
     border-bottom: 1px solid;
+    border-bottom-width: 1px!important;
+    border-color: #dddddd;
 }

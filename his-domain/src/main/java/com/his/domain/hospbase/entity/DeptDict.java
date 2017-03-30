@@ -15,6 +15,7 @@ public class DeptDict {
     private String deptCode;
     private String hospId;
     private String parentId;
+    private String status ;
 
     @GenericGenerator(name = "generator", strategy = "uuid.hex")
     @Id
@@ -92,5 +93,14 @@ public class DeptDict {
         result = 31 * result + (hospId != null ? hospId.hashCode() : 0);
         result = 31 * result + (parentId != null ? parentId.hashCode() : 0);
         return result;
+    }
+
+    @Column(name="status")
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 }

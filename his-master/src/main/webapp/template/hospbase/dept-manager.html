@@ -7,7 +7,7 @@
                 </div>
             </div>
             <div class="panel-body" style="padding: 0px">
-                <wi-datagrid height="{{dgHeight}}" width="100%" treefield="deptName" dataprovider="deptData"
+                <wi-datagrid height="{{dgHeight}}" width="100%" treefield="deptName" dataprovider="menuData"
                         itemclick="setCurrentDept" showno="false" pagebarrenderer="tools.html" headerheight="30">
                     <script type="text/ng-template" id="tools.html">
                         <a href="javascript:;" ng-click="$emit('addDeptEvent')"> <span class="icon-plus"></span>添加科室&nbsp;&nbsp;</a>
