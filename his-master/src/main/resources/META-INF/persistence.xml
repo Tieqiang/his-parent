@@ -13,11 +13,13 @@
         <class>com.his.domain.system.entity.HospitalInfo</class>
         <!--系统管理结束-->
         <class>com.his.domain.hospbase.entity.DeptDict</class>
+        <class>com.his.domain.hospbase.entity.StaffDict</class>
         <!--字典类型开始-->
         <class>com.his.domain.system.entity.BaseDict</class>
         <class>com.his.domain.system.entity.BaseDictType</class>
         <class>com.his.domain.hospbase.entity.HospitalDict</class>
         <class>com.his.domain.hospbase.entity.HospitalDictType</class>
+
         <!--字典类型结束-->
         <!-- 用户 -->
         <properties>

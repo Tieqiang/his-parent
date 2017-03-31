@@ -139,5 +139,17 @@ hisApp.config(['$stateProvider','$urlRouterProvider',function($stateProvider,$ur
         }
     });
 
+    /**
+     * 医院人员管理
+     */
+    $stateProvider.state("index.moduleSystem.staffManager",{
+        "url":"/staff-manager",
+        views:{
+            'mainContent@':{
+                templateUrl:"template/hospbase/staff-manager.html",
+                controller:"staffManagerCtrl"
+            }
+        }
+    });
 
 }])

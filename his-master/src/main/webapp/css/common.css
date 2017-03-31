@@ -1,8 +1,12 @@
 .ibox-content{
     padding: 0px;
+    padding-top: 10px;
 }
 .ibox{
     margin-bottom:0px;
+}
+.form-group{
+    margin-bottom:5px;
 }
 
 

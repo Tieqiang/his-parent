@@ -31,5 +31,20 @@ hisApp.factory("ToolsService",function(){
         return returnData ;
     }
 
+    /**
+     * 获取UI-grid表格的基本配置
+     */
+    tools.getNormalGridOptions = function(){
+        var obj = {
+            enableRowSelection:true,
+            enableRowHeaderSelection:false,
+            modifierKeysToMultiSelect:false,
+            noUnselect:false,
+            enableSorting:true,
+            enableColumnMenus:false,
+            multiSelect:false
+        }
+        return obj ;
+    }
     return tools ;
 })

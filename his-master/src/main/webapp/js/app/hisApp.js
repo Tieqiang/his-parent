@@ -12,7 +12,7 @@ hisApp.config(["localStorageServiceProvider", function (localStorageServiceProvi
 }])
 
 
-hisApp.factory('httpInterceptor', ['$q', '$injector', function ($q, $injector) {
+hisApp.factory('httpInterceptor', ['$q', '$injector','localStorageService','$rootScope', function ($q, $injector,localStorageService,$scope) {
     var httpInterceptor = {
         'responseError': function (response) {
             layer.alert(response.toString(), {
@@ -22,15 +22,21 @@ hisApp.factory('httpInterceptor', ['$q', '$injector', function ($q, $injector) {
             return $q.reject(response);
         },
         'response': function (response) {
-            console.log("response")
             return response;
         },
         'request': function (config) {
-            console.log("config")
+            if(config.url=="template/common/login.html"||config.url=="/api/hospital/list-by-status?status=1"){
+
+            }else{
+                $scope.loginUser=localStorageService.get("currentUser") ;
+                if(!$scope.loginUser.hospitalId){
+                    parent.layer.msg("系统提示:获取登陆信息失败") ;
+                    location.href="/index.html#/login"
+                }
+            }
             return config;
         },
         'requestError': function (config) {
-            console.log("requestError")
             return $q.reject(config);
         }
     }
