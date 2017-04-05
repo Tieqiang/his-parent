@@ -14,7 +14,8 @@
                             <div class="form-group">
                                 <label class="control-label col-md-2">科室</label>
                                 <div class="col-md-9">
-                                    <select name="" id="" class="form-control" ng-model="selectDept">
+                                    <select class="form-control" ng-model="selectDept">
+                                        <option value="">---请选择科室---</option>
                                         <option value="dept.id" ng-repeat="dept in deptDicts">{{dept.deptName}}</option>
                                     </select>
                                 </div>
@@ -47,6 +48,11 @@
                 <div class="ibox-title">
                     <span>人员编辑</span>
                     <div class="ibox-tools">
+                        <a href="javascript:;" ng-click="addNewStaff();" class="btn btn-sm btn-primary">
+                            <i class="fa fa-add">
+                            </i>
+                            新增员工
+                        </a>
                         <a href="javascript:;" class="btn  btn-sm btn-white" ng-click="saveStaff();">
                             <i class="fa fa-save"></i>
                             人员保存
@@ -84,6 +90,7 @@
                                 <label class="control-label col-md-1">所属科室</label>
                                 <div class="col-md-3">
                                     <select name="" id="" class="form-control">
+                                        <option value="">--请选择科室---</option>
                                         <option value="{{dept.id}}" ng-repeat="dept in deptDicts">{{dept.deptName}}</option>
                                     </select>
                                 </div>

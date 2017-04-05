@@ -8,7 +8,10 @@ import com.his.domain.hospbase.entity.HospitalDict;
 import com.his.domain.hospbase.entity.HospitalDictType;
 import com.his.domain.system.entity.BaseDict;
 import com.his.domain.system.entity.BaseDictType;
+import com.his.domain.system.entity.SysBaseDictVsHospitalDict;
+import com.his.domain.system.vo.BaseDictVsHospitalDict;
 
+import javax.persistence.Query;
 import javax.ws.rs.*;
 import javax.ws.rs.core.Response;
 import java.util.ArrayList;
@@ -251,5 +254,80 @@ public class DictService {
         }
         return Response.status(Response.Status.OK).build();
     }
+
+
+    /**
+     * 获取医院与系统字典对照的字典
+     * @param hospitalId
+     * @return
+     * @throws Exception
+     */
+    @GET
+    @Path("base-vs-hospital")
+    public List<BaseDictVsHospitalDict> listBaseDictVsHospitalDictByHospitalId(@QueryParam("hospitalId") String hospitalId) throws Exception {
+        if("".equals(hospitalId)||null==hospitalId){
+            throw new Exception("传入的医院标志为空");
+        }
+        String sql = "select a.id,a.DICT_NAME,a.DICT_VALUE,b.hospital_dict_id,b.hospital_id from sys_base_dict a LEFT JOIN sys_base_dict_vs_hospital_dict b on a.ID = b.sys_base_dict_id and \n" +
+                "b.hospital_id='"+hospitalId+"'" ;
+        Query query = baseFacade.createNativeQuery(sql);
+        List<Object[]> objects = query.getResultList() ;
+
+        List<BaseDictVsHospitalDict> baseDictVsHospitalDicts = new ArrayList<>() ;
+        for(Object[] obj:objects){
+            BaseDictVsHospitalDict dictVsHospitalDict = new BaseDictVsHospitalDict() ;
+            dictVsHospitalDict.setId(obj[0]==null?"":obj[0].toString());
+            dictVsHospitalDict.setDictName(obj[1]==null?"":obj[1].toString());
+            dictVsHospitalDict.setDictValue(obj[2]==null?"":obj[2].toString());
+            dictVsHospitalDict.setHospitalDictId(obj[3]==null?"":obj[3].toString());
+            dictVsHospitalDict.setHosptalId(obj[4]==null?"":obj[4].toString());
+            baseDictVsHospitalDicts.add(dictVsHospitalDict);
+
+        }
+
+        return baseDictVsHospitalDicts;
+
+    }
+
+    /**
+     * 保存修改
+     * @param baseDictVsHospitalDicts
+     * @return
+     */
+    @POST
+    @Path("merge-base-vs-hospital")
+    @Transactional
+    public Response mergeBaseDictVsHospital(List<BaseDictVsHospitalDict> baseDictVsHospitalDicts,@QueryParam("hospitalId") String hospitalId){
+        String hql ="delete SysBaseDictVsHospitalDict a where a.hospitalId='"+hospitalId+"' or a.hospitalId is null " ;
+        baseFacade.executeUpdate(hql) ;
+
+        for(BaseDictVsHospitalDict baseDictVsHospitalDict :baseDictVsHospitalDicts){
+            if(baseDictVsHospitalDict.getHospitalDictId() != hospitalId){
+                continue;
+            }
+            SysBaseDictVsHospitalDict sysBaseDictVsHospitalDict = new SysBaseDictVsHospitalDict() ;
+            sysBaseDictVsHospitalDict.setHospitalId(baseDictVsHospitalDict.getHospitalDictId());
+            sysBaseDictVsHospitalDict.setHospitalDictId(baseDictVsHospitalDict.getHospitalDictId());
+            sysBaseDictVsHospitalDict.setSysBaseDictId(baseDictVsHospitalDict.getId());
+            baseFacade.merge(sysBaseDictVsHospitalDict) ;
+        }
+        return Response.status(Response.Status.OK).build() ;
+    }
+
+    /**
+     * 获取键值对字典。能够获取特定机构的则返回特定机构的键值对，如果得不到特定的键值对，则找对应当
+     * 系统字典的键值对
+     * @param typeName
+     * @return
+     */
+    @Path("get-key-value")
+    @GET
+    public List<HospitalDict> listHospitalDictBySystem(String typeName,String hospitalId){
+        String hql = "select dict from HospitalDict dict ,HospitalDictType type,SysBaseDict sd , SysBaseDictVsHospitalDict" +
+                " hd where dict.typeId=type.id and type.id = hd.hospitalDictId " +
+                " and sd.id=hd.sysBaseDictId and hd.hospitalId='"+hospitalId+"' and sd.dictValue='"+typeName+"'" ;
+        return baseFacade.createQuery(HospitalDict.class,hql,new ArrayList<>()).getResultList();
+    }
+
 
 }

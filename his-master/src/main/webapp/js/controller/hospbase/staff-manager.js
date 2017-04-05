@@ -12,13 +12,19 @@ var staffManagerCtrl = hisApp.controller("staffManagerCtrl",["$scope",'$http','l
     //单元格配置
     $scope.columnDefs=[{
         field:'staffName',
-        displayName:'姓名'
+        displayName:'姓名',
+        cellClass:"cellClass",
+        headerCellClass:"headerCellClass"
     },{
         field:'title',
-        displayName:"职称"
+        displayName:"职称",
+        cellClass:'cellClass',
+        headerCellClass:"headerCellClass"
     },{
         field:'deptId',
-        displayName:'所属科室'
+        displayName:'所属科室',
+        cellClass:"cellClass",
+        headerCellClass:"headerCellClass"
     }] ;
     //获取表格的基本配置
     $scope.staffGridOptions = ToolsService.getNormalGridOptions();
@@ -141,6 +147,7 @@ var staffManagerCtrl = hisApp.controller("staffManagerCtrl",["$scope",'$http','l
         }
 
         $scope.currentStaff.hospitalId=$scope.loginUser.hospitalId ;
+        $scope.currentStaff.status = '1' ;
         $http.post("api/staff/merge",$scope.currentStaff).success(function(){
             parent.layer.msg("保存成功");
             $scope.loadStaffByHospital();
@@ -160,6 +167,11 @@ var staffManagerCtrl = hisApp.controller("staffManagerCtrl",["$scope",'$http','l
             $scope.currentStaff = {} ;
             $scope.loadStaffByHospital() ;
         })
+    }
+
+    //新增员工
+    $scope.addNewStaff = function(){
+        $scope.currentStaff = {} ;
     }
 
 

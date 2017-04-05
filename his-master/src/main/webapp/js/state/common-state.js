@@ -141,9 +141,10 @@ hisApp.config(['$stateProvider','$urlRouterProvider',function($stateProvider,$ur
 
     /**
      * 医院人员管理
+     *staffManager
      */
     $stateProvider.state("index.moduleSystem.staffManager",{
-        "url":"/staff-manager",
+        url:"/staff-manager",
         views:{
             'mainContent@':{
                 templateUrl:"template/hospbase/staff-manager.html",
@@ -151,5 +152,19 @@ hisApp.config(['$stateProvider','$urlRouterProvider',function($stateProvider,$ur
             }
         }
     });
+
+    /**
+     * 系统管理：基础字典选择
+     *
+     */
+    $stateProvider.state("index.moduleSystem.dictChoseManager",{
+        url:"/dict-chose",
+        views:{
+            'mainContent@':{
+                templateUrl:"template/hospbase/dict-chose.html",
+                controller:"dictChoseCtrl"
+            }
+        }
+    })
 
 }])
