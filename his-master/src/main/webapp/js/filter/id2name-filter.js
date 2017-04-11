@@ -3,11 +3,12 @@
  */
 
 var id2nameFilter = hisApp.filter("id2Name",function(){
-    return function(idValue,idField,displayField,datas){
+    return function(idValue,idField,displayField,datas,defaultDisplay){
         for(var i = 0 ;i<datas.length;i++){
             if(idValue==datas[i][idField]){
                 return datas[i][displayField];
             }
         }
+        return defaultDisplay ;
     }
 })

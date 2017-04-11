@@ -46,5 +46,27 @@ hisApp.factory("ToolsService",function(){
         }
         return obj ;
     }
+
+
+    /**
+     * 获取元素在数组中的位置
+     * @param element
+     * @param datas
+     * @returns {number}
+     */
+    tools.getElementPosition=function(element,datas){
+        for(var i = 0;i<datas.length;i++){
+            if(element.id){
+                if(element.id==datas[i].id){
+                    return i ;
+                }
+            }else{
+                if(element.$$hashKey == datas[i].$$hashKey){
+                    return i ;
+                }
+            }
+        }
+    }
+
     return tools ;
 })

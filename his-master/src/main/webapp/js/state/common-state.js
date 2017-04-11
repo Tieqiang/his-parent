@@ -72,7 +72,6 @@ hisApp.config(['$stateProvider','$urlRouterProvider',function($stateProvider,$ur
             }
         }
     }) ;
-
     //系统管理-平台字典维护
     $stateProvider.state("index.adminMain.baseDict",{
         url:"/base-dict",
@@ -83,13 +82,23 @@ hisApp.config(['$stateProvider','$urlRouterProvider',function($stateProvider,$ur
             }
         }
     })
-
     $stateProvider.state("index.adminMain.hospitalManage",{
         url:"/hosp-manage",
         views:{
             'mainContent@':{
                 templateUrl:"template/system/hospital.html",
                 controller:"sysHospitalCtrl"
+            }
+        }
+    });
+
+    //系统管理药品相关
+    $stateProvider.state("index.adminMain.drugClassDict",{
+        url:"/drug-class",
+        views:{
+            "mainContent@":{
+                templateUrl:"template/drug/drug-class.html",
+                controller:"drugClassCtrl"
             }
         }
     });

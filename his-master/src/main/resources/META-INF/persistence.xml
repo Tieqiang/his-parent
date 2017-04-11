@@ -19,6 +19,11 @@
         <class>com.his.domain.system.entity.BaseDictType</class>
         <class>com.his.domain.hospbase.entity.HospitalDict</class>
         <class>com.his.domain.hospbase.entity.HospitalDictType</class>
+        <class>com.his.domain.system.entity.SysBaseDict</class>
+        <class>com.his.domain.system.entity.SysBaseDictVsHospitalDict</class>
+
+        <!--药品相关-->
+        <class>com.his.domain.drug.entity.DrugClassDict</class>
 
         <!--字典类型结束-->
         <!-- 用户 -->

@@ -10,15 +10,15 @@ public class BaseDictVsHospitalDict {
     private String id ;//sysBaseDict.id
     private String dictName ;
     private String dictValue ;
-    private String hosptalId ;
+    private String hospitalId;
     private String hospitalDictId  ;
 
 
-    public BaseDictVsHospitalDict(String id, String dictName, String dictValue, String hosptalId, String hospitalDictId) {
+    public BaseDictVsHospitalDict(String id, String dictName, String dictValue, String hospitalId, String hospitalDictId) {
         this.id = id;
         this.dictName = dictName;
         this.dictValue = dictValue;
-        this.hosptalId = hosptalId;
+        this.hospitalId = hospitalId;
         this.hospitalDictId = hospitalDictId;
     }
 
@@ -49,12 +49,12 @@ public class BaseDictVsHospitalDict {
         this.dictValue = dictValue;
     }
 
-    public String getHosptalId() {
-        return hosptalId;
+    public String getHospitalId() {
+        return hospitalId;
     }
 
-    public void setHosptalId(String hosptalId) {
-        this.hosptalId = hosptalId;
+    public void setHospitalId(String hospitalId) {
+        this.hospitalId = hospitalId;
     }
 
     public String getHospitalDictId() {

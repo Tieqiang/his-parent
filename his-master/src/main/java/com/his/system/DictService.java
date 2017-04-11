@@ -280,7 +280,7 @@ public class DictService {
             dictVsHospitalDict.setDictName(obj[1]==null?"":obj[1].toString());
             dictVsHospitalDict.setDictValue(obj[2]==null?"":obj[2].toString());
             dictVsHospitalDict.setHospitalDictId(obj[3]==null?"":obj[3].toString());
-            dictVsHospitalDict.setHosptalId(obj[4]==null?"":obj[4].toString());
+            dictVsHospitalDict.setHospitalId(obj[4]==null?"":obj[4].toString());
             baseDictVsHospitalDicts.add(dictVsHospitalDict);
 
         }
@@ -302,11 +302,8 @@ public class DictService {
         baseFacade.executeUpdate(hql) ;
 
         for(BaseDictVsHospitalDict baseDictVsHospitalDict :baseDictVsHospitalDicts){
-            if(baseDictVsHospitalDict.getHospitalDictId() != hospitalId){
-                continue;
-            }
             SysBaseDictVsHospitalDict sysBaseDictVsHospitalDict = new SysBaseDictVsHospitalDict() ;
-            sysBaseDictVsHospitalDict.setHospitalId(baseDictVsHospitalDict.getHospitalDictId());
+            sysBaseDictVsHospitalDict.setHospitalId(baseDictVsHospitalDict.getHospitalId());
             sysBaseDictVsHospitalDict.setHospitalDictId(baseDictVsHospitalDict.getHospitalDictId());
             sysBaseDictVsHospitalDict.setSysBaseDictId(baseDictVsHospitalDict.getId());
             baseFacade.merge(sysBaseDictVsHospitalDict) ;
@@ -322,7 +319,7 @@ public class DictService {
      */
     @Path("get-key-value")
     @GET
-    public List<HospitalDict> listHospitalDictBySystem(String typeName,String hospitalId){
+    public List<HospitalDict> listHospitalDictBySystem(@QueryParam("typeName") String typeName,@QueryParam("hospitalId") String hospitalId){
         String hql = "select dict from HospitalDict dict ,HospitalDictType type,SysBaseDict sd , SysBaseDictVsHospitalDict" +
                 " hd where dict.typeId=type.id and type.id = hd.hospitalDictId " +
                 " and sd.id=hd.sysBaseDictId and hd.hospitalId='"+hospitalId+"' and sd.dictValue='"+typeName+"'" ;

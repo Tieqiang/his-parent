@@ -3,7 +3,7 @@
  */
 
 var hisApp = angular.module("hisApp", ['ui.router', 'LocalStorageModule', 'ui.bootstrap', 'ui.wisoft', 'ui.grid', 'ui.grid.edit',
-    , 'ui.grid.autoResize', 'ui.grid.selection']);
+    , 'ui.grid.autoResize', 'ui.grid.selection','ui.grid.treeView']);
 
 hisApp.config(["localStorageServiceProvider", function (localStorageServiceProvider) {
     //https://github.com/Tieqiang/angular-local-storage
