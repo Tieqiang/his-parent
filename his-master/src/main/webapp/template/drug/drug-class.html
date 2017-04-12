@@ -13,13 +13,19 @@
             </div>
         </div>
         <div class="ibox-content">
-            <div style="min-height: 450px;" ui-grid="drugClassGridOps" ui-grid-selection ui-grid-tree-view>
-
-            </div>
+            <tree-grid
+                    tree-data="drugClasses" col-defs="columnDefs"
+                    expand-on ="drugClassName"
+                    icon-leaf     = "icon-file"
+                    icon-expand   = "icon-plus-sign"
+                    icon-collapse = "icon-minus-sign"
+                    expand-level="1"
+                    tree-control="my-tree"
+                    on-select="treeClick(branch)"
+            ></tree-grid>
         </div>
     </div>
 </div>
-
 
 <script id="drugClassModal.html" type="text/ng-template">
 

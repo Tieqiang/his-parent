@@ -5,6 +5,9 @@
 var drugClassCtrl = hisApp.controller("drugClassCtrl",['$scope','$http',"ToolsService",'$uibModal',function($scope,$http,ToolsService,$uibModal){
 
 
+    var tree=undefined;
+
+    $scope.my_tree = tree ={}
     $scope.drugClasses = [] ;//所有的药品类别
     $scope.drugClassTreeData = [] ;//药品类型的树形数据
 
@@ -15,96 +18,24 @@ var drugClassCtrl = hisApp.controller("drugClassCtrl",['$scope','$http',"ToolsSe
      */
     $scope.loadDrugClass = function(){
         $http.get("/api/drug-class/list-all").success(function(data){
-            $scope.drugClasses = data ;
-            $scope.buildTree();
+            $scope.drugClasses = ToolsService.buildTree(data) ;
         })
     } ;
     $scope.loadDrugClass();
 
-    /**
-     * 设置树形的level
-     * @param drugClass
-     */
-    $scope.setLevel=function(drugClass){
-        drugClass.$$expand=false;
-        if(!drugClass.parentId){
-            drugClass.$$treeLevel = 0 ;
-            return ;
-        }else{
-            for(var i= 0;i<$scope.drugClasses.length;i++){
-                if($scope.drugClasses[i].id==drugClass.parentId){
-                    if($scope.drugClasses[i].$$treeLevel||$scope.drugClasses[i].$$treeLevel>=0){
-                        drugClass.$$treeLevel = $scope.drugClasses[i].$$treeLevel+1;
-                    }else{
-                        $scope.setLevel($scope.drugClasses[i]) ;
-                        drugClass.$$treeLevel = $scope.drugClasses[i].$$treeLevel+1;
-                    }
-                    return ;
-                }else{
-                    continue;
-                }
-            }
-
-        }
-
+    //表格点击
+    $scope.treeClick=function(row){
+        $scope.currentDrugClass = row ;
     }
 
-    /**
-     * 创建树
-     */
-    $scope.buildTree = function(){
-        for(var i = 0;i<$scope.drugClasses.length;i++){
-            var drugClass = $scope.drugClasses[i] ;
-            $scope.setLevel(drugClass);
-        }
-
-        $scope.drugClassGridOps.data=ToolsService.buildTree($scope.drugClasses);
-
-    }
-
-    //表格配置
-    $scope.drugClassGridOps = ToolsService.getNormalGridOptions();
-
-    //表格配置
+    //表格列配置
     $scope.columnDefs=[{
         field:"drugClassName",
-        displayName:"药品分类名称",
-        cellClass:"cellClass",
-        headerCellClass:'headerCellClass',
-        width:"70%"
+        displayName:"药品分类名称"
     },{
         field:"drugClassCode",
-        displayName:"药品分类代码",
-        cellClass:"cellClass",
-        headerCellClass:"headerCellClass",
-        width:'27%'
+        displayName:"药品分类代码"
     }] ;
-
-    $scope.drugClassGridOps.columnDefs = $scope.columnDefs ;
-
-
-    //注册选择事件
-    $scope.drugClassGridOps.onRegisterApi=function(gridApi){
-        $scope.gridApi = gridApi ;
-        gridApi.selection.on.rowSelectionChanged($scope,function(row){
-            $scope.currentDrugClass = row.entity;
-        });
-
-        $scope.gridApi.treeBase.on.rowExpanded($scope,function (row) {
-
-            if(!row.entity.$$expand){
-                //数据尚未加载
-                var position = ToolsService.getElementPosition(row.entity,$scope.drugClassGridOps.data);
-                $scope.drugClassGridOps.data.splice(position,0,row.entity.children)
-                row.entity.$$expand=true;
-            }
-
-
-        })
-
-
-
-    }
 
     $scope.openEditModal=function(action,drugClass){
         var drugClassModal = $uibModal.open({
@@ -122,10 +53,8 @@ var drugClassCtrl = hisApp.controller("drugClassCtrl",['$scope','$http',"ToolsSe
         });
 
         drugClassModal.result.then(function(obj){
-
             delete obj.$$treeLevel;
             delete  obj.$$hashKey;
-
             $http.post("/api/drug-class/merge",obj).success(function(){
                 parent.layer.msg("系统提示：更新成功");
                 $scope.loadDrugClass();
@@ -183,7 +112,6 @@ var drugClassCtrl = hisApp.controller("drugClassCtrl",['$scope','$http',"ToolsSe
         if(!$scope.currentDrugClass){
             parent.layer.msg("系统提示：请选择要编辑的类别") ;
             return ;
-
         }
 
         $scope.openEditModal("修改编辑",$scope.currentDrugClass);

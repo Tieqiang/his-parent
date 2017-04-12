@@ -4,7 +4,7 @@
 
 //本地路由、ui-grid 、jqwidgets 插件
 var hisApp = angular.module("hisApp", ['ui.router', 'LocalStorageModule', 'ui.bootstrap', 'ui.wisoft', 'ui.grid', 'ui.grid.edit',
-    , 'ui.grid.autoResize', 'ui.grid.selection','ui.grid.treeView','jqwidgets']);
+    , 'ui.grid.autoResize', 'ui.grid.selection','ui.grid.treeView','treeGrid']);
 
 //配置本地存储
 hisApp.config(["localStorageServiceProvider", function (localStorageServiceProvider) {

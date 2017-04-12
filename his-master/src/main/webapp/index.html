@@ -14,20 +14,22 @@
     <link rel="stylesheet" href="static/hplus/js/plugins/layer/laydate/need/laydate.css"/>
     <link rel="stylesheet" href="static/webUI4Angular/themes/blue/wi-all.css"/>
     <link rel="stylesheet" href="static/angular-ui-grid/ui-grid.css">
-    <link rel="stylesheet" href="static/angular-jqwidgets/styles/jqx.bootstrap.css">
+    <link rel="stylesheet" href="static/angular-bootstrap-grid-tree/treeGrid.css">
     <link rel="stylesheet" href="css/common.css">
+
 </head>
 <body class="gray-bg top-navigation">
 <div class="wrapper" style="padding: 2px;">
     <div id="pager-wrapper">
         <div class="border-bottom white-bg" ui-view="header" >
         </div>
-        <div class="wrapper wrapper-content fadeIn animated" ng-controller="indexCtrl" style="padding: 0px;min-height: 540px;width: 100%">
-            <div class="container-fluid" style="padding: 5px 0px;" ui-view="mainContent"></div>
+        <div class="wrapper wrapper-content fadeIn animated" ng-controller="indexCtrl" style="padding: 0px;width: 100%" >
+            <div class="container-fluid" style="padding: 5px 0px;background: #eef1f5" ui-view="mainContent" auto-height></div>
         </div>
         <div  ui-view="footer"></div>
     </div>
 </div>
+
 <script src="static/hplus/js/jquery.min.js"></script>
 <script src="static/angular/angular.js"></script>
 <script src="static/angular/angular-ui-router.js"></script>
@@ -41,9 +43,8 @@
 <script src="static/hplus/js/plugins/layer/layer.min.js"></script>
 <script src="static/hplus/js/plugins/cropper/cropper.min.js"></script>
 
-<!--jqwidgets-->
-<script src="static/angular-jqwidgets/jqx-all.js"></script>
-<script src="static/angular-jqwidgets/jqxangular.js"></script>
+<!--third plugins-->
+<script src="static/angular-bootstrap-grid-tree/tree-grid-directive.js"></script>
 
 <!--App-->
 <script src="js/app/hisApp.js"></script>
@@ -53,6 +54,8 @@
 <script src="js/service/tools.js"></script>
 <!--filter-->
 <script src="js/filter/id2name-filter.js"></script>
+<!--directive-->
+<script src="js/directive/auto-height.js"></script>
 
 <!--controller-->
 
@@ -75,5 +78,6 @@
 
 <!--药品相关-->
 <script src="js/controller/drug/drug-class-ctrl.js"></script>
+
 </body>
 </html>
