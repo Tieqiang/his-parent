@@ -2,16 +2,18 @@
  * Created by heren on 2017/3/9.
  */
 
+//本地路由、ui-grid 、jqwidgets 插件
 var hisApp = angular.module("hisApp", ['ui.router', 'LocalStorageModule', 'ui.bootstrap', 'ui.wisoft', 'ui.grid', 'ui.grid.edit',
-    , 'ui.grid.autoResize', 'ui.grid.selection','ui.grid.treeView']);
+    , 'ui.grid.autoResize', 'ui.grid.selection','ui.grid.treeView','jqwidgets']);
 
+//配置本地存储
 hisApp.config(["localStorageServiceProvider", function (localStorageServiceProvider) {
     //https://github.com/Tieqiang/angular-local-storage
     //localStorage by default . when browser closed the data is remain.
     localStorageServiceProvider.setPrefix("hisApp").setStorageType('sessionStorage').setNotify(true, true);
 }])
 
-
+//配置服务拦截
 hisApp.factory('httpInterceptor', ['$q', '$injector','localStorageService','$rootScope', function ($q, $injector,localStorageService,$scope) {
     var httpInterceptor = {
         'responseError': function (response) {
@@ -44,3 +46,4 @@ hisApp.factory('httpInterceptor', ['$q', '$injector','localStorageService','$roo
 }]).config(['$httpProvider', function ($httpProvider) {
     $httpProvider.interceptors.push('httpInterceptor');
 }]);
+
